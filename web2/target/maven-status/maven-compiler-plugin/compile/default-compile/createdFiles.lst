@@ -1,0 +1,7 @@
+com/jm/servlets/LoginServlet.class
+com/jm/servlets/RegistrationServlet.class
+com/jm/Main.class
+com/jm/PageGenerator.class
+com/jm/services/UserService.class
+com/jm/servlets/ApiServlet.class
+com/jm/models/User.class
