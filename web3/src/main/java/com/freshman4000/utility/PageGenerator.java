@@ -1,4 +1,4 @@
-package com.jm;
+package com.freshman4000.utility;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -11,8 +11,11 @@ import java.io.Writer;
 import java.util.Map;
 
 public class PageGenerator {
-    private static final String HTML_DIR = "src/resources/templates";
+
     private static PageGenerator pageGenerator;
+
+    private static final String HTML_DIR = "./src/resources/templates";
+
     private final Configuration cfg;
 
     public static PageGenerator getInstance() {
@@ -33,7 +36,7 @@ public class PageGenerator {
         return stream.toString();
     }
 
-    private PageGenerator() {
+    public PageGenerator() {
         cfg = new Configuration();
     }
 }
