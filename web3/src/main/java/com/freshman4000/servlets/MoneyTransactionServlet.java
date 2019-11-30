@@ -26,7 +26,6 @@ public class MoneyTransactionServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PageGenerator pg = PageGenerator.getInstance();
         Map<String, Object> pageVars = Collections.synchronizedMap(new HashMap<>());
         String senderName = req.getParameter("senderName");
         String senderPassword = req.getParameter("senderPass");

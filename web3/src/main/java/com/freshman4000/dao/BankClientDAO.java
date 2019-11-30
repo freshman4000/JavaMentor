@@ -1,7 +1,6 @@
 package com.freshman4000.dao;
 
 import com.freshman4000.models.BankClient;
-import com.freshman4000.utility.DBException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -22,17 +21,20 @@ public class BankClientDAO {
             while (resultSet.next()) {
                 result.add(new BankClient(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getLong(4)));
             }
+            resultSet.close();
         }
         return result;
     }
 
     public boolean validateClient(String name, String password) throws SQLException {
+        boolean result;
         try (PreparedStatement pst = connection.prepareStatement("SELECT password FROM bank_client WHERE name= ?")) {
             pst.setString(1, name);
             ResultSet rst = pst.executeQuery();
-            return rst.next() && password.equals(rst.getString(1));
-
+            result = rst.next() && password.equals(rst.getString(1));
+            rst.close();
         }
+        return result;
     }
 
     public void updateClientsMoney(String name, String password, Long transactValue) throws SQLException {
@@ -53,6 +55,7 @@ public class BankClientDAO {
                 preparedStatement.setLong(1, newUserBalance);
                 preparedStatement.setString(2, name);
                 preparedStatement.executeUpdate();
+                rst.close();
                 connection.commit();
             } catch (SQLException e) {
                 connection.rollback();
@@ -65,23 +68,29 @@ public class BankClientDAO {
     }
 
     public BankClient getClientById(long id) throws SQLException {
+        BankClient result;
         try (PreparedStatement pst = connection.prepareStatement("SELECT * FROM bank_client WHERE id = ?")) {
             pst.setLong(1, id);
             ResultSet rst = pst.executeQuery();
             rst.next();
-            return new BankClient(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getLong(4));
+            result = new BankClient(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getLong(4));
+            rst.close();
         }
+        return result;
     }
 
     public boolean isClientHasSum(String name, Long expectedSum) throws SQLException {
+        boolean result;
         try (PreparedStatement pst = connection.prepareStatement("SELECT money FROM bank_client WHERE name = ?")) {
             pst.setString(1, name);
             ResultSet rst = pst.executeQuery();
             rst.next();
-            return expectedSum <= rst.getLong(1);
+            result = expectedSum <= rst.getLong(1);
+            rst.close();
         }
+        return result;
     }
-
+    //method that came from origin SQL injection - non safe
     public long getClientIdByName(String name) throws SQLException {
         Statement stmt = connection.createStatement();
         stmt.execute("select * from bank_client where name='" + name + "'");
@@ -98,10 +107,10 @@ public class BankClientDAO {
         try (PreparedStatement pst = connection.prepareStatement("SELECT * FROM bank_client WHERE name = ?")) {
             pst.setString(1, name);
             ResultSet resultSet = pst.executeQuery();
-            //todo remove
             if (resultSet.next()) {
-                    result = new BankClient(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getLong(4));
+                result = new BankClient(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getLong(4));
             } else result = null;
+            resultSet.close();
         }
         return result;
     }

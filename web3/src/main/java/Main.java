@@ -2,12 +2,9 @@
 import com.freshman4000.servlets.MoneyTransactionServlet;
 import com.freshman4000.servlets.RegistrationServlet;
 import com.freshman4000.servlets.ResultServlet;
-import com.freshman4000.utility.DBException;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
-import com.freshman4000.services.BankClientService;
-import com.freshman4000.models.BankClient;
 import com.freshman4000.servlets.ApiServlet;
 
 public class Main {

@@ -22,7 +22,10 @@ public class DBHelper {
     @SuppressWarnings("UnusedDeclaration")
     private static Configuration getMySqlConfiguration() {
         Configuration configuration = new Configuration();
-        configuration.addAnnotatedClass(Car.class).addAnnotatedClass(DailyReport.class).addAnnotatedClass(CurrentReport.class);
+        configuration
+                .addAnnotatedClass(Car.class)
+                .addAnnotatedClass(DailyReport.class)
+                .addAnnotatedClass(CurrentReport.class);
 
         return configuration;
     }

@@ -30,7 +30,6 @@ public class RegistrationServlet extends HttpServlet {
         } catch (DBException e) {
             e.printStackTrace();
         }
-        //todo check if we can handle exception here
         String name = req.getParameter("name");
         String password = req.getParameter("password");
         long money;
@@ -44,7 +43,7 @@ public class RegistrationServlet extends HttpServlet {
             try {
                bankClient = bankClientService.getClientByName(name);
             } catch (DBException e) {
-                //todo response in case of exception
+                //response in case of exception
                 pageVariables.put("message", "Database error! Try one more time!");
                 resp.getWriter().println(PageGenerator.getInstance().getPage("result.html", pageVariables));
             }
