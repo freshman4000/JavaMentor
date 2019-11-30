@@ -1,0 +1,13 @@
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/utility/DBHelper.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/services/CarService.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/dao/DailyReportDao.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/models/DailyReport.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/models/Car.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/services/DailyReportService.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/Main.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/servlets/DailyReportServlet.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/models/CurrentReport.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/dao/CarDao.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/servlets/NewDayServlet.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/servlets/ProducerServlet.java
+/home/v1/projects/JavaMentor/web4/src/main/java/com/freshman4000/servlets/CustomerServlet.java

@@ -23,7 +23,6 @@ public class RegistrationServlet extends HttpServlet {
         Map<String, Object> pageVariables = Collections.synchronizedMap(new HashMap<>());
         pageVariables.put("email", "Type your email: ");
         pageVariables.put("password", "Create password: ");
-        pageVariables.put("password2", "Confirm password: ");
         resp.setContentType("text/html");
         resp.getWriter().println(pg.getPage("registerPage.html", pageVariables));
     }
@@ -32,25 +31,23 @@ public class RegistrationServlet extends HttpServlet {
         String email = req.getParameter("email");
         String pass1 = req.getParameter("password");
         Map<String, Object> pageVariables = Collections.synchronizedMap(new HashMap<>());
+        resp.setContentType("text/html");
 
         if (email.isEmpty() || pass1.isEmpty()) {
             resp.setStatus(400);
-            resp.setContentType("text/html");
             pageVariables.put("message", "Email and password should not be empty! Try one more time!");
             pageVariables.put("mapping", "/register");
             resp.getWriter().println(pg.getPage("info.html", pageVariables));
         } else {
                 User user = new User(email, pass1);
                 if (userService.isExistsThisUser(user)) {
-                    resp.setContentType("text/html");
-                    resp.setStatus(400);
+                    resp.setStatus(200);
                     pageVariables.put("message", "User is already registered! Provide different registration data!");
                     pageVariables.put("mapping", "/register");
                     resp.getWriter().println(pg.getPage("info.html", pageVariables));
                 } else {
                     userService.addUser(user);
                     resp.setStatus(200);
-                    resp.setContentType("text/html");
                     pageVariables.put("message", "User with email " + email + " was successfully registered! You can login now!");
                     pageVariables.put("mapping", "/login");
                     resp.getWriter().println(pg.getPage("info.html", pageVariables));

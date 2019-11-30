@@ -1,5 +1,6 @@
 package com.freshman4000.servlets;
 
+import com.freshman4000.utility.PageGenerator;
 import com.google.gson.Gson;
 import com.freshman4000.utility.DBException;
 import com.freshman4000.models.BankClient;
@@ -10,18 +11,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ApiServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         BankClientService bankClientService = new BankClientService();
+        Map<String, Object> pageVariables = Collections.synchronizedMap(new HashMap<>());
         Gson gson = new Gson();
-        String json;
+        String json = "";
         if (req.getPathInfo().contains("all")) {
-            json = gson.toJson(bankClientService.getAllClient());
+            try {
+                json = gson.toJson(bankClientService.getAllClient());
+            } catch (DBException e) {
+                resp.setStatus(500);
+                pageVariables.put("message", "Database error! Try one more time!");
+                resp.getWriter().println(PageGenerator.getInstance().getPage("resultPage.html", pageVariables));
+            }
         } else {
-            json = gson.toJson(bankClientService.getClientByName(req.getParameter("name")));
+            //todo corrected APIServlet
+            try {
+                json = gson.toJson(bankClientService.getClientByName(req.getParameter("name")));
+            } catch (DBException e) {
+                resp.setStatus(500);
+                pageVariables.put("message", "Database error! Try one more time!");
+                resp.getWriter().println(PageGenerator.getInstance().getPage("resultPage.html", pageVariables));
+            }
         }
         resp.getWriter().write(json);
         resp.setStatus(200);

@@ -22,30 +22,27 @@ public class LoginServlet extends HttpServlet {
         Map<String, Object> pageVariables = Collections.synchronizedMap(new HashMap<>());
         String email = req.getParameter("email");
         String pass = req.getParameter("password");
+        resp.setContentType("text/html");
         if (!email.equals("") && !pass.equals("")) {
             User user = new User(email, pass);
             if (userService.isExistsThisUser(user)) {
                if (userService.authUser(user)) {
                    resp.setStatus(200);
-                   resp.setContentType("text/html");
                    resp.getWriter().println("User " + email + " logged successfully");
                 } else {
                     resp.setStatus(400);
-                    resp.setContentType("text/html");
                     pageVariables.put("message", "Wrong data! Try one more time!");
                     pageVariables.put("mapping", "/login");
                     resp.getWriter().println(pg.getPage("info.html", pageVariables));
                 }
             } else {
                 resp.setStatus(400);
-                resp.setContentType("text/html");
                 pageVariables.put("message", "User with such email is not registered!");
                 pageVariables.put("mapping", "/login");
                 resp.getWriter().println(pg.getPage("info.html", pageVariables));
             }
         } else {
             resp.setStatus(400);
-            resp.setContentType("text/html");
             pageVariables.put("message", "Email or password field should not be empty! Please try again!");
             pageVariables.put("mapping", "/login");
             resp.getWriter().println(pg.getPage("info.html", pageVariables));
