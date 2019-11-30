@@ -1,6 +1,5 @@
 package com.freshman4000.services;
 
-import com.freshman4000.dao.CarDao;
 import com.freshman4000.dao.DailyReportDao;
 import com.freshman4000.models.Car;
 import com.freshman4000.models.DailyReport;

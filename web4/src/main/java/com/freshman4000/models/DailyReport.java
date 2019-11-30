@@ -1,7 +1,5 @@
 package com.freshman4000.models;
 
-import org.hibernate.Session;
-
 import javax.persistence.*;
 
 @Entity

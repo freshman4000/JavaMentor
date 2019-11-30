@@ -1,7 +1,6 @@
 package com.freshman4000.servlets;
 
 import com.freshman4000.services.DailyReportService;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

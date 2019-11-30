@@ -24,24 +24,21 @@ public class CustomerServlet extends HttpServlet {
         String brand = req.getParameter("brand");
         String model = req.getParameter("model");
         String licensePlate = req.getParameter("licensePlate");
+        resp.setStatus(200);
+        Gson gson = new Gson();
         //check for null values
         if (!brand.isEmpty() || !model.isEmpty() || !licensePlate.isEmpty()) {
-       Car car = CarService.getInstance().getCar(brand, model, licensePlate);
-            System.out.println(car);
+            Car car = CarService.getInstance().getCar(brand, model, licensePlate);
             if (car != null) {
                 CarService.getInstance().deleteCar(car);
                 DailyReportService.getInstance().makeCurrentReport(car);
             } else {
                 //if null values present or no car in DB
-                resp.setStatus(200);
-                Gson gson = new Gson();
                 String json = gson.toJson("no such car for sale!");
                 resp.getWriter().println(json);
             }
         } else {
             //if null values present or no car in DB
-            resp.setStatus(200);
-            Gson gson = new Gson();
             String json = gson.toJson("wrong input data!");
             resp.getWriter().println(json);
         }

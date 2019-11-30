@@ -16,16 +16,14 @@ public class CarDao {
     }
 
     public void acceptCar(Car car) {
-        Transaction tx = session.beginTransaction();
         session.save(car);
-        tx.commit();
         session.close();
     }
 
     public List getAllCars() {
         try {
             Query query = session.createQuery("from Car");
-            List<Car> list = query.list();
+            List<Car> list = (List<Car>)query.list();
             return list;
         } finally {
             session.close();
@@ -40,9 +38,11 @@ public class CarDao {
             session.close();
         }
     }
-
+    //it doesn't work without transaction
     public void deleteCar(Car car) {
+        Transaction tx = session.beginTransaction();
         session.delete(car);
+        tx.commit();
         session.close();
     }
 

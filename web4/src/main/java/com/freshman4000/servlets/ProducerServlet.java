@@ -2,10 +2,6 @@ package com.freshman4000.servlets;
 
 import com.freshman4000.models.Car;
 import com.freshman4000.services.CarService;
-import com.freshman4000.utility.DBHelper;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
