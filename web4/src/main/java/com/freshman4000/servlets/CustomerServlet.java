@@ -16,6 +16,7 @@ public class CustomerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Gson gson = new Gson();
         String json = gson.toJson(CarService.getInstance().getAllCars());
+        resp.setStatus(200);
         resp.getWriter().println(json);
     }
 
@@ -27,18 +28,18 @@ public class CustomerServlet extends HttpServlet {
         resp.setStatus(200);
         Gson gson = new Gson();
         //check for null values
-        if (!brand.isEmpty() || !model.isEmpty() || !licensePlate.isEmpty()) {
+        if (!brand.isEmpty() && !model.isEmpty() && !licensePlate.isEmpty()) {
             Car car = CarService.getInstance().getCar(brand, model, licensePlate);
             if (car != null) {
                 CarService.getInstance().deleteCar(car);
                 DailyReportService.getInstance().makeCurrentReport(car);
             } else {
-                //if null values present or no car in DB
+                //no car in DB
                 String json = gson.toJson("no such car for sale!");
                 resp.getWriter().println(json);
             }
         } else {
-            //if null values present or no car in DB
+            //if null values present
             String json = gson.toJson("wrong input data!");
             resp.getWriter().println(json);
         }

@@ -1,0 +1,13 @@
+com/freshman4000/models/DailyReport.class
+com/freshman4000/services/CarService.class
+com/freshman4000/dao/DailyReportDao.class
+com/freshman4000/servlets/DailyReportServlet.class
+com/freshman4000/services/DailyReportService.class
+com/freshman4000/servlets/ProducerServlet.class
+com/freshman4000/servlets/CustomerServlet.class
+com/freshman4000/dao/CarDao.class
+com/freshman4000/models/Car.class
+com/freshman4000/servlets/NewDayServlet.class
+com/freshman4000/utility/DBHelper.class
+com/freshman4000/Main.class
+com/freshman4000/models/CurrentReport.class

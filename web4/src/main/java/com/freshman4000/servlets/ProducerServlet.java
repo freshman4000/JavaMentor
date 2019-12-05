@@ -21,7 +21,7 @@ public class ProducerServlet extends HttpServlet {
         } catch (IllegalArgumentException e) {
             price = null;
         }
-        //check for null values
+        //check for null values & validate
         if (!brand.isEmpty()
                 && !model.isEmpty()
                 && !licensePlate.isEmpty()

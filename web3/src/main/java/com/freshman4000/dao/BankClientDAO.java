@@ -59,7 +59,6 @@ public class BankClientDAO {
                 connection.commit();
             } catch (SQLException e) {
                 connection.rollback();
-                connection.setAutoCommit(true);
                 throw new SQLException(e);
             } finally {
                 connection.setAutoCommit(true);

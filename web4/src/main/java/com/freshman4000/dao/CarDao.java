@@ -1,9 +1,11 @@
 package com.freshman4000.dao;
 
 import com.freshman4000.models.Car;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
 
@@ -20,11 +22,10 @@ public class CarDao {
         session.close();
     }
 
-    public List getAllCars() {
+    public List<Car> getAllCars() {
         try {
             Query query = session.createQuery("from Car");
-            List<Car> list = (List<Car>)query.list();
-            return list;
+            return (List<Car>)query.list();
         } finally {
             session.close();
         }

@@ -25,6 +25,7 @@ public class RegistrationServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Map<String, Object> pageVariables = Collections.synchronizedMap(new HashMap<>());
         BankClientService bankClientService = new BankClientService();
+        resp.setContentType("text/html");
         try {
             bankClientService.createTable();
         } catch (DBException e) {
@@ -39,7 +40,7 @@ public class RegistrationServlet extends HttpServlet {
             money = -1;
         }
         if (!name.isEmpty() && !password.isEmpty() && money > 0) {
-            BankClient bankClient = new BankClient();
+            BankClient bankClient = null;
             try {
                bankClient = bankClientService.getClientByName(name);
             } catch (DBException e) {

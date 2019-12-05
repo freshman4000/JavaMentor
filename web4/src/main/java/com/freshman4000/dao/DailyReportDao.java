@@ -15,7 +15,7 @@ public class DailyReportDao {
     }
 
     public List<DailyReport> getAllDailyReport() {
-        List<DailyReport> dailyReports = session.createQuery("FROM DailyReport").list();
+        List<DailyReport> dailyReports = (List<DailyReport>)session.createQuery("FROM DailyReport").list();
         session.close();
         return dailyReports;
     }
