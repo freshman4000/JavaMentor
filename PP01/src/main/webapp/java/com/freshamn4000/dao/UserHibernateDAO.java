@@ -1,5 +1,6 @@
 package com.freshamn4000.dao;
 
+import com.freshamn4000.interfaces.UserDAO;
 import com.freshamn4000.models.User;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -7,10 +8,10 @@ import org.hibernate.Transaction;
 
 import java.util.List;
 
-public class UserDAO {
+public class UserHibernateDAO implements UserDAO<User, Long> {
     private Session session;
 
-    public UserDAO(Session session) {
+    public UserHibernateDAO(Session session) {
         this.session = session;
     }
 
